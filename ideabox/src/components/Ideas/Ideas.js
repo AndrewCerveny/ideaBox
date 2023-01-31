@@ -3,6 +3,7 @@ import '../Ideas/Ideas.css';
 import Card from '../Cards/Cards';
 
 const Ideas = (props) => {
+  const {deleteIdea} = props
  const ideaCards = props.ideas.map((idea)=> {
   return (
     <Card 
@@ -10,6 +11,7 @@ const Ideas = (props) => {
     description = {idea.description}
     id = {idea.id}
     key = {idea.id}
+    deleteIdea = {deleteIdea}
     />
   )
  });

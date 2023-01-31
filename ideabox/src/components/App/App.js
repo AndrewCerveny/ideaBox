@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Ideas from '../Ideas/Ideas';
 import '../App/App.css';
-import Form from '../Form/Form'
+import Form from '../Form/Form';
 
 class App extends Component {
   constructor() {
@@ -17,15 +17,17 @@ class App extends Component {
   addIdea =(newIdea) => {
     this.setState({ideas:[...this.state.ideas,newIdea]})
   }
+  deleteIdea = (id) => {
+    const filteredIdeas = this.state.ideas.filter(idea => idea.id !== id)
+    this.setState({ideas:filteredIdeas})
+  }
   render() {
     return (
       <main className='App'>
         <h1> IdeaBox: Quote Style </h1>
-        {!this.state.ideas.length && <h2> Please add ideas!</h2>}
+        {!this.state.ideas.length ? <h2> Please add ideas!</h2>: null}
         <Form addIdea={this.addIdea} />
-        <Ideas ideas={this.state.ideas} />
-        
-     
+        <Ideas ideas={this.state.ideas} deleteIdea={this.deleteIdea} />
       </main>
     )
   }
